@@ -1,2 +1,2 @@
 # NielsSchmidt.dev
-Personal "call card" website.
+This is under development!
