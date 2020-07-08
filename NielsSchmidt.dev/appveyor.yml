@@ -1,0 +1,90 @@
+# NielsSchmidt.Dev [MASTER]
+version: 0.1.{build}
+max_jobs: 1
+
+branches:
+  only:
+    - master
+
+pull_requests:
+  do_not_increment_build_number: true
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+build_cloud: Docker
+image: Latest
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+configuration: Release
+
+matrix:
+  # set this flag to immediately finish build once one of the jobs fails.
+  fast_finish: true
+
+build:
+  verbosity: minimal
+
+# Set variables
+init:
+  - sh: _solutionname=NielsSchmidt.dev
+  - sh: _solutionfile=NielsSchmidt.dev.sln
+  - sh: _base=$APPVEYOR_BUILD_FOLDER/$_solutionname
+  # Print some stuff
+  - sh: echo "Build Version = '$APPVEYOR_BUILD_VERSION'"
+  - sh: echo "Solution = '$_solutionname' (_solutionfile)"
+  - sh: echo "Base Path = '$_base'"
+
+# Install
+install:
+
+# Restore packages and build ClientApps
+before_build:
+  - sh: dotnet restore $_base/$_solutionfile --verbosity m </dev/null
+  # Client Projects
+  - sh: cd $_base/Web/ClientApp && npm install && ng build --prod --deployUrl=/dist/ </dev/null
+
+# Publish Applications
+build_script:
+  - sh: dotnet publish $_base/Web/Web.csproj </dev/null
+
+after_build:
+  # Remove files that are not needed
+  - sh: rm -rf $_base/Web/bin/Release/netcoreapp3.1/publish/ClientApp
+
+  # zip and copy to root path to avoid realtive path in artifacts
+  - sh: _artifactname='NielsSchmidtDev_'"$APPVEYOR_BUILD_VERSION"'_service.zip' && cd $_base/Web/bin/Release/netcoreapp3.1/publish && zip -qr $_artifactname ./ && mv ./$_artifactname $APPVEYOR_BUILD_FOLDER/$_artifactname
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+test_script:
+  - sh: if [ ! -d "$_base/Web/wwwroot/dist" ]; then exit 1; fi
+  - sh: ls -alsh $APPVEYOR_BUILD_FOLDER/*.zip
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+artifacts:
+ - path: '/NielsSchmidtDev_$(APPVEYOR_BUILD_VERSION)_service.zip'
+   name: NielsSchmidtDev
+   type: Auto
+
+#---------------------------------#
+#         notifications           #
+#---------------------------------#
+notifications:
+  - provider: Slack
+    incoming_webhook:
+      secure: nbid0Nz8wovLPp5MW6SnYJUa9eJsoZn0bbGQz6cmNp7TxCgXWn7vQc2cTvx7Lk8rxCIUuq5vnr3qsrPzKn2+vexyQhIyGOGkb0pFOWyCAF8=
