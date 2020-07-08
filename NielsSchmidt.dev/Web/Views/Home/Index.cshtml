@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!--
+		_  _      _               _              ___            _                 _        _     _
+	 | \| |    (_)     ___     | |     ___    / __|    __    | |_     _ __     (_)    __| |   | |_
+	 | .` |    | |    / -_)    | |    (_-<    \__ \   / _|   | ' \   | '  \    | |   / _` |   |  _|
+	 |_|\_|   _|_|_   \___|   _|_|_   /__/_   |___/   \__|_  |_||_|  |_|_|_|  _|_|_  \__,_|   _\__|
+	_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
+	"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'
+	-->
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>Niels Schmidt - Software Engineer</title>
+	<base href="~/">
+
+	<script>
+		console.log('%c NielsSchmidt ', 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
+		console.log('By // Niels Schmidt //');
+
+		this.window.app = {};
+		this.window.app.version = '@Backend.CoreConstants.Versioning.VersionString';
+		console.log(`v${this.window.app.version}`);
+	</script>
+</head>
+<body>
+
+	<app-root></app-root>
+
+	@Html.Raw(@ViewBag.DistScripts)
+
+</body>
+</html>
