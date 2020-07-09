@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 // Areas
 import { HomeAreaComponent } from './areas/home-area/home-area.component';
+import { PlaceholderAreaComponent } from './areas/placeholder-area/placeholder-area.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HomeAreaComponent
+		HomeAreaComponent,
+		PlaceholderAreaComponent
 	],
 	imports: [
 		BrowserModule,
