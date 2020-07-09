@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+
+// Main
 import { AppComponent } from './app.component';
 
 // Areas
@@ -16,7 +18,8 @@ import { PlaceholderAreaComponent } from './areas/placeholder-area/placeholder-a
 	],
 	imports: [
 		BrowserModule,
-		AppRoutingModule
+		AppRoutingModule,
+		NgbModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
