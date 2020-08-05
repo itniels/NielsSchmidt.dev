@@ -32,7 +32,7 @@ import { PortfolioServicesAppveyordeployagentComponent } from './partials/portfo
 import { PortfolioServicesHetznerautorebooterComponent } from './partials/portfolio-projects/portfolio-services-hetznerautorebooter/portfolio-services-hetznerautorebooter.component';
 import { PortfolioServicesShopifysyncComponent } from './partials/portfolio-projects/portfolio-services-shopifysync/portfolio-services-shopifysync.component';
 
-let routes: Routes = [
+const routes: Routes = [
 	{
 		path: '',
 		redirectTo: 'welcome',
@@ -116,16 +116,6 @@ let routes: Routes = [
 		],
 	},
 ];
-
-/** While developing only! */
-if (environment.production) {
-	routes = [
-		{
-			path: '',
-			component: PlaceholderAreaComponent,
-		},
-	];
-}
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, { useHash: true })],
