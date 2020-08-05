@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Web.BL;
 
 namespace Web
 {
@@ -7,6 +8,7 @@ namespace Web
 	{
 		public static void Main(string[] args)
 		{
+			ConfigReader.InitConfig();
 			CreateHostBuilder(args).Build().Run();
 		}
 

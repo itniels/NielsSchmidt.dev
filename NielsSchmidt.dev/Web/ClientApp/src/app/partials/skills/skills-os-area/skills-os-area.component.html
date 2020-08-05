@@ -1,0 +1,27 @@
+<h4 class="page-title">Operating Systems</h4>
+<hr />
+
+<div class="sub-page-container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Language</th>
+				<th scope="col">Type</th>
+				<th scope="col">Usage</th>
+				<th scope="col">Career experience %</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let os of OperatingSystems">
+				<td>
+					{{ os.name }}
+				</td>
+				<td>{{os.type}}</td>
+				<td>{{os.experience}}</td>
+				<td>
+					<mat-progress-bar mode="determinate" [value]="os.relativePercent"></mat-progress-bar>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

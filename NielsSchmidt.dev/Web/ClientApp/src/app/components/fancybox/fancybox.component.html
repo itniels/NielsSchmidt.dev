@@ -1,0 +1,12 @@
+<!-- single image mode -->
+<div *ngIf="!IsGallery">
+	<a [href]="src" data-fancybox [attr.data-caption]="caption" [title]="AltText">
+		<img [src]="src" [attr.class]="imgClass" [alt]="AltText">
+	</a>
+</div>
+<!-- gallery mode -->
+<div *ngIf="IsGallery">
+	<a [href]="src" [attr.data-fancybox]="gallery" [attr.data-caption]="caption" [title]="AltText">
+		<img [src]="src" [attr.class]="imgClass" [alt]="AltText">
+	</a>
+</div>

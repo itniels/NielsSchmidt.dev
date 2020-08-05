@@ -1,12 +1,40 @@
-<!-- NAV -->
-<div>
+<div class="container-fluid">
+	<!-- NAV -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">
+			<img class="nav-img" src="../img/Niels_Small_Round.png" />
+			<span>Niels Schmidt</span>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/welcome']">Welcome</a></li>
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/personal']">Personal</a></li>
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/professional']">Professional</a></li>
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/skills']">Skills</a></li>
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/portfolio']">Portfolio</a></li>
+				<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Main site content and router -->
+	<div class="row">
+		<div class="col-md-4 col-lg-2 d-none d-md-block">
+			<app-left-bar></app-left-bar>
+		</div>
+		<div class="col-sm-12 col-md-8 col-lg-10">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<nav class="navbar fixed-bottom navbar-dark bg-secondary">
+		<div class="row col-sm-12">
+			<div class="full-width text-center text-nowrap">©2019-2020 NielsSchmidt.dev (v{{Version}})</div>
+		</div>
+	</nav>
 </div>
-
-<!--Main site content from router-->
-<div>
-	<router-outlet></router-outlet>
-</div>
-
-<!-- Footer -->
-<footer></footer>

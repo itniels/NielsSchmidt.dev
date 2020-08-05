@@ -1,0 +1,55 @@
+<h3 class="page-title">Contact me</h3>
+<hr />
+
+<div class="page-container">
+
+	<div class="mainform" *ngIf="!MessageSent">
+		<p>I would really appreciate a message from you!</p>
+
+		<div class="row">
+			<div class="col-md-6">
+
+				<mat-form-field class="full-width" appearance="standard">
+					<mat-label>Your name</mat-label>
+					<input matInput placeholder="Name" [(ngModel)]="ContactFormModel.name">
+				</mat-form-field>
+
+				<mat-form-field class="full-width" appearance="standard">
+					<mat-label>Your email</mat-label>
+					<input type="email" matInput placeholder="your@email.com" [(ngModel)]="ContactFormModel.email">
+				</mat-form-field>
+
+				<mat-form-field class="full-width">
+					<mat-label>Message</mat-label>
+					<textarea matInput placeholder="Hi there..." [(ngModel)]="ContactFormModel.message"></textarea>
+				</mat-form-field>
+
+			</div>
+			<div class="col-md-6">
+
+				<h5>Purpose</h5>
+				<mat-radio-group aria-labelledby="radio-group-label"
+												 class="radio-group"
+												 [(ngModel)]="ContactFormModel.type">
+					<mat-radio-button class="radio-button" [value]="ContactFormMessageType.SayHello">Would just like to say hello</mat-radio-button>
+					<mat-radio-button class="radio-button" [value]="ContactFormMessageType.InviteToInterview">Would like to invite you to an interview</mat-radio-button>
+					<mat-radio-button class="radio-button" [value]="ContactFormMessageType.Hire">Would like to hire you</mat-radio-button>
+				</mat-radio-group>
+
+				<div>
+					<button mat-raised-button color="primary" [disabled]="!FormCanSend" (click)="SendMessage()">Send Message</button>
+					&nbsp;
+					<button mat-raised-button color="warn" (click)="Clear()">Clear</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="MessageSent">
+		<h5>Thank you so much!</h5>
+		<p>I look forward to reading it.</p>
+		<div class="d-flex justify-content-center">
+			<img class="msg-sent-img" src="https://media.giphy.com/media/QBqTS9XBErS1rEvqyn/giphy.gif" />
+		</div>
+	</div>
+</div>

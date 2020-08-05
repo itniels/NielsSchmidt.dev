@@ -1,0 +1,16 @@
+<h3 class="page-title">Portfolio</h3>
+<hr />
+
+<div>
+	<!-- Menu -->
+	<nav mat-tab-nav-bar mat-align-tabs="center" color="primary">
+		<div mat-tab-link routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive" [routerLink]="['./web']">Web</div>
+		<!--<div mat-tab-link routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" [routerLink]="['./services']">Services</div>-->
+		<!--<div mat-tab-link routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive" [routerLink]="['./desktop']">Desktop</div>-->
+		<!--<div mat-tab-link routerLinkActive #rla5="routerLinkActive" [active]="rla5.isActive" [routerLink]="['./iot']">IoT</div>-->
+		<!--<div mat-tab-link routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive" [routerLink]="['./games']">Games</div>-->
+	</nav>
+
+	<!-- Sub outlet -->
+	<router-outlet></router-outlet>
+</div>

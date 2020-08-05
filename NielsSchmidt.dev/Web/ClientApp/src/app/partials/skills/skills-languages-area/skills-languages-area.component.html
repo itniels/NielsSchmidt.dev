@@ -1,0 +1,50 @@
+<h4 class="page-title">Languages</h4>
+<hr />
+
+<div class="sub-page-container">
+	<h5>Human</h5>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Language</th>
+				<th scope="col">Spoken</th>
+				<th scope="col">Written</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let language of HumanLanguages">
+				<td>
+					<img [src]="'/img/languages/human/' + language.flagCode" class="mr-2" style="width: 20px">
+					{{ language.name }}
+				</td>
+				<td>{{language.spoken}}</td>
+				<td>{{language.written}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h5>Code</h5>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Language</th>
+				<th scope="col">Type</th>
+				<th scope="col">Usage</th>
+				<th scope="col">Career experience %</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let language of CodeLanguages">
+				<td>
+					<img [src]="'/img/languages/code/' + language.icon" class="mr-2" style="width: 20px">
+					{{ language.name }}
+				</td>
+				<td>{{language.type}}</td>
+				<td>{{language.experience}}</td>
+				<td>
+					<mat-progress-bar mode="determinate" [value]="language.relativePercent"></mat-progress-bar>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

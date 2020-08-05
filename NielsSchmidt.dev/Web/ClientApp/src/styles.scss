@@ -2,3 +2,91 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/*@import 'https://fonts.googleapis.com/css?family=Roboto';*/
+
+body {
+	/** Roboto Font */
+	font-family: Roboto, sans-serif;
+	/** Make room for nav */
+	padding-top: 3.5em;
+	/** No scrolling the main page */
+	overflow: hidden;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.page-container {
+	height: calc(100vh - 12em);
+	padding-right: 3em;
+	overflow: auto;
+	font-size: 14px;
+	color: rgb(48, 67, 77);
+}
+
+.sub-page-container {
+	height: calc(100vh - 22em);
+	padding-right: 3em;
+	overflow: auto;
+	font-size: 14px;
+	color: rgb(48, 67, 77);
+}
+
+.sub-page-noheader-container {
+	height: calc(100vh - 17em);
+	padding-right: 3em;
+	overflow: auto;
+	font-size: 14px;
+	color: rgb(48, 67, 77);
+}
+
+.portfolio-project-page-container {
+	height: calc(100vh - 21em);
+	padding-right: 3em;
+	overflow: auto;
+	font-size: 14px;
+	color: rgb(48, 67, 77);
+}
+
+.page-title {
+	padding-top: .5em;
+}
+
+.snack-bottom {
+	margin-bottom: 3em !important
+}
+
+.snack-success {
+	background-color: #016c01 !important
+}
+
+.snack-warning {
+	background-color: orange !important
+}
+
+.snack-error {
+	background-color: red !important
+}
+
+.card-img-top {
+	width: 100%;
+}
+
+.card-img-gallery {
+/*	width: 200px !important;
+	max-width: 200px !important;
+	height: 150px !important;
+	max-height: 150px !important;*/
+
+	margin: 2px;
+	display: inline;
+}
+
+.card-img-gallery-item {
+	width: 200px !important;
+	max-width: 200px !important;
+	height: 150px !important;
+	max-height: 150px !important;
+}

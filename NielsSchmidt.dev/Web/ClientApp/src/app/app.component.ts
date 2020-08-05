@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	title = 'ClientApp';
+	public Version: string;
+
+	constructor() {
+		this.Version = window.app.version;
+	}
 }
