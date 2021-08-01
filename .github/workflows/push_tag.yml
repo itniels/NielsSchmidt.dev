@@ -1,0 +1,107 @@
+# When a new tag is created, it will build server and agents with that tag as version.
+# eg. 1.2.34
+name: Push_Tag
+
+on:
+  push:
+    tags:
+       - '*'
+
+jobs:
+# #########################################
+# Build Server
+# #########################################
+  build_server:
+    env:
+      PATH_BASE: ${{github.workspace}}
+      PATH_BASE_APP: ${{github.workspace}}/NielsSchmidt.dev
+      APP_NAME: Web
+      VERSION_DOTNET: '3.1'
+      VERSION_NODE: '14'
+      RUNTIME_DOTNET: 'linux-x64'
+      PACKAGE_NAME: artifact.zip
+      CD_APPID: "9"
+
+    runs-on: ubuntu-latest
+    steps:
+      # #########################################
+      # Setup
+      # #########################################
+      - uses: actions/checkout@v2
+
+      - name: Get TAG version
+        run: |
+          echo "TAG_VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+          echo "Version '${GITHUB_REF/refs\/tags\//}'"
+        shell: bash
+
+      # #########################################
+      # Build Angular
+      # #########################################
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '${{env.VERSION_NODE}}'
+
+      - name: Install angular CLI
+        run: npm install -g @angular/cli > /dev/null
+
+      - name: Build Angular ClientApp
+        run: npm install && ng build --prod --deployUrl=/appdist/ </dev/null
+        working-directory: ${{env.PATH_BASE_APP}}/${{env.APP_NAME}}/ClientApp
+
+      # #########################################
+      # Build DotNet
+      # #########################################
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{env.VERSION_DOTNET}}.x
+
+      - name: Publish
+        run: dotnet publish "${{env.PATH_BASE_APP}}/${{env.APP_NAME}}/${{env.APP_NAME}}.csproj" -p:Version=${{env.TAG_VERSION}} -c Release --runtime ${{env.RUNTIME_DOTNET}} --self-contained </dev/null
+
+      # #########################################
+      # Cleanup
+      # #########################################
+      - name: Cleanup
+        run: |
+          rm -rf ${{env.APP_NAME}}/bin/Release/net${{env.VERSION_DOTNET}}/${{env.RUNTIME_DOTNET}}/publish/ClientApp
+          rm -f ${{env.APP_NAME}}/bin/Release/net${{env.VERSION_DOTNET}}/${{env.RUNTIME_DOTNET}}/publish/appsettings.Development.json
+        working-directory: ${{env.PATH_BASE_APP}}
+
+      # #########################################
+      # Package
+      # #########################################
+      - name: Create package
+        run: |
+          zip -qr ${{env.PACKAGE_NAME}} ./
+          mv ./${{env.PACKAGE_NAME}} ${{env.PATH_BASE}}/${{env.PACKAGE_NAME}}
+        working-directory: ${{env.PATH_BASE_APP}}/${{env.APP_NAME}}/bin/Release/net${{env.VERSION_DOTNET}}/${{env.RUNTIME_DOTNET}}/publish
+
+      # #########################################
+      # CoreDeploy Section
+      # #########################################
+      - name: Create Config
+        run: |
+          echo "{" >> cd_config
+          # Values
+          echo "'Version': '${{env.TAG_VERSION}}'," >> cd_config
+          echo "'AppId': ${{env.CD_APPID}}," >> cd_config
+          echo "'BuildRun': ${{github.run_id}}," >> cd_config
+          echo "'Commit': '${{github.sha}}'," >> cd_config
+          echo "'CommitMessage': '${{github.event.head_commit.message}}'" >> cd_config
+          # End Values
+          echo "}" >> cd_config
+          # Replace quotes and base64 it into an env variable
+          sed -i "s/'/\"/g" cd_config
+          echo "CD_CONFIG=$(cat cd_config | base64 --wrap=0)" >> $GITHUB_ENV
+          # Print out config values
+          cat cd_config
+
+      - name: Upload File
+        id: upload
+        uses: JantHsueh/upload-file-action@master
+        with:
+         url: ${{secrets.COREDEPLOY_URL}}
+         forms: '{ "key": "${{secrets.COREDEPLOY_INGRESSKEY}}", "config": "${{env.CD_CONFIG}}" }'
+         fileForms: '{"file": "${{env.PATH_BASE}}/${{env.PACKAGE_NAME}}"}'

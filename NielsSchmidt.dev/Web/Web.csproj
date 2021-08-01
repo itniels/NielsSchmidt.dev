@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\languages\human\" />
-    <Folder Include="wwwroot\img\portfolio\NewFolder\" />
+    <Folder Include="wwwroot\img\portfolio\nikachat\" />
   </ItemGroup>
 
 </Project>
