@@ -11,12 +11,12 @@ jobs:
 # #########################################
 # Build Server
 # #########################################
-  build_server:
+  build:
     env:
       PATH_BASE: ${{github.workspace}}
       PATH_BASE_APP: ${{github.workspace}}/NielsSchmidt.dev
       APP_NAME: Web
-      VERSION_DOTNET: '3.1'
+      VERSION_DOTNET: '5.0'
       VERSION_NODE: '14'
       RUNTIME_DOTNET: 'linux-x64'
       PACKAGE_NAME: artifact.zip
