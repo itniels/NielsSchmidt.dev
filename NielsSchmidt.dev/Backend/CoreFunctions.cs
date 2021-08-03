@@ -11,7 +11,7 @@ namespace Backend
 		/// </summary>
 		public static string GetScriptsFromIndexHtml(string rootPath)
 		{
-			return File.ReadAllText(Path.Combine(rootPath, "wwwroot", "dist", "index.html"));
+			return File.ReadAllText(Path.Combine(rootPath, "wwwroot", "appdist", "index.html"));
 		}
 
 		/// <summary>
