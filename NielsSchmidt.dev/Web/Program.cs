@@ -16,7 +16,7 @@ namespace Web
 				Host.CreateDefaultBuilder(args)
 						.ConfigureWebHostDefaults(webBuilder => {
 							webBuilder.UseStartup<Startup>()
-							.UseKestrel(opt => opt.ListenLocalhost(5007));
+							.UseKestrel(opt => opt.ListenLocalhost(ConfigReader.ListenPort));
 						});
 	}
 }

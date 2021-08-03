@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Backend.Modules.Email;
@@ -29,5 +28,6 @@ namespace Web.BL
 		// Slack
 		public static SmtpConfig SmtpConfiguration { get { return Configuration.GetSection("SmtpConfiguration").Get<SmtpConfig>(); } }
 		public static string SlackUsername { get { return Configuration["SlackUsername"]; } }
+		public static int ListenPort { get { return int.Parse(Configuration["ListenPort"]); } }
 	}
 }
