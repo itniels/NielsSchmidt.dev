@@ -3,10 +3,10 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"web-watch": "cd ClientApp && ng build --deployUrl=/dist/ --watch",
+		"web-watch": "cd ClientApp && ng build --deployUrl=/appdist/ --watch",
 		"web-build": "cd ClientApp && ng build",
-		"web-build-prod": "cd ClientApp && ng build --prod --deployUrl=/dist/",
-		"web-build-prod-watch": "cd ClientApp && ng build --prod --deployUrl=/dist/ --watch"
+		"web-build-prod": "cd ClientApp && ng build --prod --deployUrl=/appdist/",
+		"web-build-prod-watch": "cd ClientApp && ng build --prod --deployUrl=/appdist/ --watch"
 	},
 	"-vs-binding": {
 		"ProjectOpened": [

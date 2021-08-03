@@ -341,4 +341,5 @@ healthchecksdb
 
 # Custom
 dist
+appdist
 NielsSchmidt.dev/Web/appsettings.Development.json
