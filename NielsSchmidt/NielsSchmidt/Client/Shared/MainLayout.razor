@@ -8,10 +8,10 @@
 
 <MudLayout>
 	<MudAppBar Elevation="0">
-		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+		<MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />r
 		<MudText Typo="Typo.h6">NielsSchmidt.dev</MudText>
 		<MudSpacer />
-		<MudIconButton Icon="@Icons.Material.Filled.DarkMode" Color="Color.Inherit" OnClick="DarkModeToggle" />
+		<MudIconButton Icon="@(_darkMode ? @Icons.Material.Filled.LightMode : @Icons.Material.Filled.DarkMode)" Color="Color.Inherit" OnClick="DarkModeToggle" />
 	</MudAppBar>
 	<MudDrawer @bind-Open="_drawerOpen" Elevation="2" ClipMode="DrawerClipMode.Always" Variant="DrawerVariant.Mini">
 		<NavMenu />
