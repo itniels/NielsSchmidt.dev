@@ -17,4 +17,9 @@
 		<ProjectReference Include="..\Shared\NielsSchmidt.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Components\" />
+	  <Folder Include="wwwroot\img\" />
+	</ItemGroup>
+
 </Project>
