@@ -1,0 +1,26 @@
+﻿@page "/"
+
+<PageHeaderComponent Title="Welcome" />
+
+<MudGrid>
+	<MudItem md="6" xs="12">
+		<MudText Typo="Typo.body1">Hi there, so glad you stopped by!</MudText>
+		<br />
+		<MudText Typo="Typo.body1">This site is all about me, what I can do, my personal and work life, and of course to show off some cool things I have been working on.</MudText>
+		<br />
+		<MudText Typo="Typo.body1" Class="pb-5">
+			I am a passionate .NET and DevOps engineer from Denmark. I am @YearsOld years old and have been coding since 2012. I did my degree in computer science where I graduated in 2017 and been professionally employed ever since.
+		</MudText>
+		<MudText Typo="Typo.body1">Please look around this site to learn more about me, or <MudLink Typo="Typo.body1" Href="/contact">click here</MudLink> to get in touch with me.</MudText>
+	</MudItem>
+	<MudItem md="6" xs="12" Class="d-flex align-center justify-center mud-width-full py-8">
+		<MudImage Src="img/profile_color_square_400x400.png" Width="300" Class="mr-3" Style="border-radius: 4px;" />
+	</MudItem>
+	<MudItem xs="12">
+
+	</MudItem>
+</MudGrid>
+
+@code {
+	private int YearsOld => (int)(Math.Floor((DateTime.Now - DateTime.Parse("03/11/1983")).TotalDays / 365.2425));
+}
