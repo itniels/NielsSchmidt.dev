@@ -1,6 +1,7 @@
 ﻿@using Blazored.LocalStorage
 @inherits LayoutComponentBase
 @inject ISyncLocalStorageService _localStorage
+@inject NavigationManager NavigationManager
 
 <MudThemeProvider IsDarkMode="@_darkMode" />
 <MudDialogProvider />
@@ -14,21 +15,25 @@
 		<MudSpacer />
 		<MudImage Width="50" Src="img/profile_color_round_400x400.png" Class="mr-3" />
 		<MudSpacer />
-		<MudTooltip Text="My Blog"><MudIconButton Icon="@Icons.Material.Filled.Link" Color="Color.Inherit" Target="blank" Href="https://itniels.com"/></MudTooltip>
-		<MudTooltip Text="My GitHub"><MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Target="blank" Href="https://github.com/itniels"/></MudTooltip>
-		<MudTooltip Text="My LinkedIn"><MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" Target="blank" Href="https://linkedin.com/in/itniels/"/></MudTooltip>
-		<MudTooltip Text="My Twitter"><MudIconButton Icon="@Icons.Custom.Brands.Twitter" Color="Color.Inherit" Target="blank" Href="https://twitter.com/ITNiels"/></MudTooltip>
+		<MudTooltip Text="My Blog"><MudIconButton Icon="@Icons.Material.Filled.Link" Color="Color.Inherit" Target="blank" Href="https://itniels.com" /></MudTooltip>
+		<MudTooltip Text="My GitHub"><MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Target="blank" Href="https://github.com/itniels" /></MudTooltip>
+		<MudTooltip Text="My LinkedIn"><MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" Target="blank" Href="https://linkedin.com/in/itniels/" /></MudTooltip>
+		<MudTooltip Text="My Twitter"><MudIconButton Icon="@Icons.Custom.Brands.Twitter" Color="Color.Inherit" Target="blank" Href="https://twitter.com/ITNiels" /></MudTooltip>
 	</MudAppBar>
 	<MudDrawer @bind-Open="_drawerOpen" Elevation="2" ClipMode="DrawerClipMode.Always" Variant="DrawerVariant.Mini">
 		<MudNavMenu Color="Color.Primary" Bordered="true">
-			<MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Welcome</MudNavLink>
-			<MudNavLink Href="personal" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">Personal</MudNavLink>
-			<MudNavLink Href="professional" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Computer">Professional</MudNavLink>
-			<MudNavLink Href="skills" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Code">Skills</MudNavLink>
-			<MudNavLink Href="portfolio" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Brush">Portfolio</MudNavLink>
-			<MudNavLink Href="contact" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Email">Contact me</MudNavLink>
+			<MudNavLink Href="@(Urls.Welcome)" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Welcome</MudNavLink>
+			<MudNavLink Href="@(Urls.Personal)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Person">Personal</MudNavLink>
+			<MudNavGroup Title="Professional" Icon="@Icons.Material.Filled.Computer" Expanded="true">
+				<MudNavLink Href="@(Urls.Professional_WorkHistory)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.History">Work History</MudNavLink>
+				<MudNavLink Href="@(Urls.Professional_Education)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.CastForEducation">Education</MudNavLink>
+				<MudNavLink Href="@(Urls.Professional_Certification)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Newspaper">Certifications</MudNavLink>
+			</MudNavGroup>
+			@*<MudNavLink Href="skills" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Code">Skills</MudNavLink>*@
+			@*<MudNavLink Href="@(Urls.Portfolio)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Brush">Portfolio</MudNavLink>*@
+			<MudNavLink Href="@(Urls.Contact)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Email">Contact me</MudNavLink>
 			<CurrentEmployment Class="@(_drawerOpen ? "pa-3 ma-2" : "d-none")" />
-			<MudNavLink Href="about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.Info">About this site</MudNavLink>
+			<MudNavLink Href="@(Urls.About)" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Outlined.Info">About this site</MudNavLink>
 		</MudNavMenu>
 	</MudDrawer>
 	<MudMainContent>
@@ -53,7 +58,7 @@
 		_drawerOpen = menu.HasValue ? menu.Value : true;
 
 		var darkMode = _localStorage.GetItem<bool?>("siteDarkMode");
-		_darkMode = darkMode.HasValue ? darkMode.Value : false;
+		_darkMode = darkMode.HasValue ? darkMode.Value : true;
 	}
 
 	private async Task DrawerToggle()
@@ -66,5 +71,10 @@
 	{
 		_localStorage.SetItem("siteDarkMode", !_darkMode);
 		_darkMode = !_darkMode;
+	}
+
+	private async Task Navigate(string page)
+	{
+		NavigationManager.NavigateTo(page);
 	}
 }

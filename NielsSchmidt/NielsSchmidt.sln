@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NielsSchmidt.Client", "NielsSchmidt\Client\NielsSchmidt.Client.csproj", "{DFDBCD7A-AFFA-4D1A-8871-2CD0DA39E2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NielsSchmidt.Client", "NielsSchmidt\Client\NielsSchmidt.Client.csproj", "{DFDBCD7A-AFFA-4D1A-8871-2CD0DA39E2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NielsSchmidt.Server", "NielsSchmidt\Server\NielsSchmidt.Server.csproj", "{E4A94478-4155-4820-BD47-6EA38DC9A1FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NielsSchmidt.Server", "NielsSchmidt\Server\NielsSchmidt.Server.csproj", "{E4A94478-4155-4820-BD47-6EA38DC9A1FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NielsSchmidt.Shared", "NielsSchmidt\Shared\NielsSchmidt.Shared.csproj", "{E3DC860C-C810-43BD-8967-CF5B62732BCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NielsSchmidt.Shared", "NielsSchmidt\Shared\NielsSchmidt.Shared.csproj", "{E3DC860C-C810-43BD-8967-CF5B62732BCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution", ".Solution", "{01E5F7A9-2B4F-4004-B74F-3EB5D848D57D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
