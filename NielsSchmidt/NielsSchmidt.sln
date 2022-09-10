@@ -10,6 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NielsSchmidt.Shared", "NielsSchmidt\Shared\NielsSchmidt.Shared.csproj", "{E3DC860C-C810-43BD-8967-CF5B62732BCB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution", ".Solution", "{01E5F7A9-2B4F-4004-B74F-3EB5D848D57D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Build_OnTag.yml = .github\workflows\Build_OnTag.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
