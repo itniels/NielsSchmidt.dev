@@ -1,0 +1,40 @@
+﻿@page "/contact"
+@using System.ComponentModel.DataAnnotations
+@using NielsSchmidt.Shared.Models
+@inject HttpClient _httpClient
+
+<PageHeaderComponent Title="Get in touch" />
+
+<!-- Form -->
+<MudGrid>
+	<MudItem xs="12" md="6">
+		<MudTextField Class="pb-4" T="string" @bind-Value="Model.Name" Label="Your name" Required="true" RequiredError="Name is required!" />
+		<MudTextField Class="pb-4" T="string" @bind-Value="Model.FromEmail" Label="Your email address" Required="true" RequiredError="Email is required!" Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid or empty"})" />
+		<MudTextField Class="pb-4" T="string" @bind-Value="Model.Body" Label="Your message" Required="true" Variant="Variant.Outlined" RequiredError="Message is required!" Lines="5" />
+
+
+	</MudItem>
+	<MudItem xs="12" md="6">
+		<MudText Typo="Typo.h6">Purpose</MudText>
+		<MudRadioGroup @bind-SelectedOption="@Model.Title">
+			<MudRadio Option="@("Would just like to say hello")" Color="Color.Primary">Would just like to say hello</MudRadio><br />
+			<MudRadio Option="@("Would like to invite you to an interview")" Color="Color.Secondary">Would like to invite you to an interview</MudRadio><br />
+			<MudRadio Option="@("Would like to hire you")" Color="Color.Success">Would like to hire you</MudRadio>
+		</MudRadioGroup>
+
+		<MudDivider Class="mb-5" />
+
+		<MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="SubmitMessage" Disabled="!Model.CanSend">Send Message</MudButton>
+		<MudButton Variant="Variant.Filled" Color="Color.Error">Clear</MudButton>
+
+	</MudItem>
+</MudGrid>
+
+@code {
+	public EmailMessageModel Model { get; set; } = new();
+
+	public async Task SubmitMessage()
+	{
+		await _httpClient.PostAsJsonAsync<EmailMessageModel>("contact/SendMail", Model);
+	}
+}

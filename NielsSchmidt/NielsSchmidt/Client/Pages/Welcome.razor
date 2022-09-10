@@ -1,0 +1,34 @@
+﻿@page "/"
+@using System.Globalization
+
+<PageHeaderComponent Title="Welcome" />
+
+<MudGrid>
+	<MudItem md="6" xs="12">
+		<MudText Typo="Typo.body1" Align="Align.Center">
+			Hi there, so glad you stopped by 😊
+		</MudText>
+		<MudDivider Class="mb-4 mt-4" />
+
+		<MudText Typo="Typo.body1" Align="Align.Center" Class="pb-5">
+			I am a passionate .NET and DevOps engineer from Denmark. I am @YearsOld years old and have been coding since <strong>2012</strong>. I did my degree in computer science where I graduated in <strong>2017</strong> and been professionally employed ever since.
+		</MudText>
+
+		<MudDivider Class="mb-4" />
+
+		<MudText Typo="Typo.body1" Align="Align.Center">
+			Please look around this site to learn more about me, or <MudLink Typo="Typo.body1" Href="/contact">click here</MudLink> to get in touch with me.
+		</MudText>
+
+	</MudItem>
+	<MudItem md="6" xs="12" Class="d-flex align-center justify-center mud-width-full py-8">
+		<MudImage Src="img/profile_color_square_400x400.png" Width="300" Class="mr-3" Style="border-radius: 4px;" />
+	</MudItem>
+	<MudItem xs="12">
+
+	</MudItem>
+</MudGrid>
+
+@code {
+	private int YearsOld => (int)(Math.Floor((DateTime.Now - DateTime.Parse("03/11/1983", CultureInfo.GetCultureInfo("en-US"))).TotalDays / 365.2425));
+}
