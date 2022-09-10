@@ -12,8 +12,8 @@ jobs:
   build_server:
     env:
       PATH_BASE: ${{github.workspace}}
-      PATH_BASE_APP: ${{github.workspace}}/NielsSchmidt/NielsSchmidt
-      APP_NAME: Server
+      PATH_BASE_APP: ${{github.workspace}}/NielsSchmidt/NielsSchmidt/Server
+      APP_NAME: NielsSchmidt.Server
       VERSION_DOTNET: '6.0'
       RUNTIME_DOTNET: 'linux-x64'
       PACKAGE_NAME: artifact.zip
@@ -40,7 +40,7 @@ jobs:
           dotnet-version: ${{env.VERSION_DOTNET}}.x
 
       - name: Publish
-        run: dotnet publish "${{env.PATH_BASE_APP}}/${{env.APP_NAME}}/${{env.APP_NAME}}.csproj" -p:Version=${{env.TAG_VERSION}} -c Release --runtime ${{env.RUNTIME_DOTNET}} --self-contained </dev/null
+        run: dotnet publish "${{env.PATH_BASE_APP}}/${{env.APP_NAME}}.csproj" -p:Version=${{env.TAG_VERSION}} -c Release --runtime ${{env.RUNTIME_DOTNET}} --self-contained </dev/null
 
       # #########################################
       # Cleanup
@@ -57,7 +57,7 @@ jobs:
         run: |
           zip -qr ${{env.PACKAGE_NAME}} ./
           mv ./${{env.PACKAGE_NAME}} ${{env.PATH_BASE}}/${{env.PACKAGE_NAME}}
-        working-directory: ${{env.PATH_BASE_APP}}/${{env.APP_NAME}}/bin/Release/net${{env.VERSION_DOTNET}}/${{env.RUNTIME_DOTNET}}/publish
+        working-directory: ${{env.PATH_BASE_APP}}/bin/Release/net${{env.VERSION_DOTNET}}/${{env.RUNTIME_DOTNET}}/publish
 
       # #########################################
       # CoreDeploy
