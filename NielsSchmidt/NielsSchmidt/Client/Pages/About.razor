@@ -1,6 +1,13 @@
 ﻿@page "/about"
+@using System.Reflection
+@using NielsSchmidt.Shared
 
 <PageHeaderComponent Title="About this site"/>
+
+<p>Version: @CoreEnvironment.Version</p>
+<br />
+<p>This site was made with.NET6 and Blazor WebAssembly. The backend handles sending emails, and the rest is pure frontend. The reason for choosing WASM was to seperate the two, and have email/secrets stored in the backend behind an endpoint.</p>
+<p>For the UI I used MudBlazor to make everything look nice.</p>
 
 @code {
 
