@@ -12,10 +12,9 @@ builder.Services.AddOptions();
 builder.Services.Configure<MailServiceOptions>(builder.Configuration.GetSection(nameof(MailServiceOptions)));
 
 // Configure Kestrel
-builder.WebHost.UseKestrel(kestrel => {
-	kestrel.ListenLocalhost(5009);
-	kestrel.Limits.MaxRequestBodySize = long.MaxValue;
-});
+//builder.WebHost.UseKestrel(kestrel => {
+//	kestrel.Limits.MaxRequestBodySize = long.MaxValue;
+//});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,7 +35,7 @@ else
 	app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
