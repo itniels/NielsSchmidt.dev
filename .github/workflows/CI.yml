@@ -31,5 +31,5 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: |
-          ${{ secrets.REGISTRY_ITNIELS_URL }}/itniels/nielsschmidt.dev:latest
-          ${{ secrets.REGISTRY_ITNIELS_URL }}/itniels/nielsschmidt.dev:${{ env.TAG_VERSION }}
+          ${{ secrets.REGISTRY_ITNIELS_URL }/nielsschmidt.dev:latest
+          ${{ secrets.REGISTRY_ITNIELS_URL }}/nielsschmidt.dev:${{ env.TAG_VERSION }}
