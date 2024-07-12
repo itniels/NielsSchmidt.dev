@@ -31,7 +31,7 @@ jobs:
         file: ./Dockerfile
         push: true
         build-args: |
-          VERSION=${{ env.TAG_VERSION }}
+          BUILD_VERSION=${{ env.TAG_VERSION }}
         tags: |
           ${{ secrets.REGISTRY_ITNIELS_URL }}/nielsschmidt.dev:latest
           ${{ secrets.REGISTRY_ITNIELS_URL }}/nielsschmidt.dev:${{ env.TAG_VERSION }}
