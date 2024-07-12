@@ -1,6 +1,9 @@
 # Use the official .NET SDK 7 base image
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
+# Set version from github action
+ARG BUILD_VERSION
+
 # Set the working directory
 WORKDIR /app
 
@@ -8,7 +11,7 @@ WORKDIR /app
 COPY ./NielsSchmidt .
 
 # Build the Blazor WASM project
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o out -p:Version=${BUILD_VERSION}
 
 # Use the official ASP.NET runtime 7 base image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
